@@ -56,10 +56,10 @@ Available versions listed on [Maven Central](http://search.maven.org/#search%7Cg
 ## Status
 
 [![Build Status](https://travis-ci.org/earcam/com.sun.tools.attach.svg?branch=master)](https://travis-ci.org/earcam/com.sun.tools.attach)
-[![Open Issues](https://img.shields.io/bitbucket/issues/earcam/com.sun.tools.attach.svg)](https://bitbucket.org/earcam/com.sun.tools.attach/issues)
-
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.earcam.wrapped/com.sun.tools.attach/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.earcam.wrapped/com.sun.tools.attach)
-[![Javadoc](http://www.javadoc.io/badge/io.earcam.wrapped/com.sun.tools.attach.svg?color=yellowgreen)](http://www.javadoc.io/doc/io.earcam.wrapped/com.sun.tools.attach)
+
+[![Open Issues](https://img.shields.io/bitbucket/issues/earcam/com.sun.tools.attach.svg)](https://bitbucket.org/earcam/com.sun.tools.attach/issues)
+[![Javadoc](http://www.javadoc.io/badge/io.earcam.wrapped/com.sun.tools.attach.svg?color=green)](http://www.javadoc.io/doc/io.earcam.wrapped/com.sun.tools.attach)
 
 
 ## JVMs
@@ -74,7 +74,7 @@ Available versions listed on [Maven Central](http://search.maven.org/#search%7Cg
 
 The IBM JDK does not use the OpenJDK core for `com.sun.tools.attach` and the necessary implementation classes are not open source.
  
-I did view the required class files (`javap`, I swear I didn't decompile them 😉) and also check the licence terms for rev-eng and redistribution, while IANAL, it clearly would breach the IBM licence ([for Non-Warranted Programs (Z125-5589-05)](https://www-03.ibm.com/software/sla/sladb.nsf/pdf/ilan/$file/ilan_en.pdf).
+I did view the required class files (`javap`, I swear I didn't decompile them 😉) and also check the licence terms for rev-eng and redistribution, while IANAL, it clearly would breach the IBM licence ([for Non-Warranted Programs (Z125-5589-05)](https://www-03.ibm.com/software/sla/sladb.nsf/pdf/ilan/$file/ilan_en.pdf)).
 
 ## Licences
 [![Licence: GPLv2+CE](https://img.shields.io/badge/License-GPLv2+CE-yellow.svg)](http://openjdk.java.net/legal/gplv2+ce.html)
