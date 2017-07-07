@@ -28,6 +28,6 @@
     "chmod go-rwx -R $HOME/.m2"
   ],
   "script": [
-    "mvn clean verify"
+    "mvn -DskipTests clean verify"
   ],
 }
