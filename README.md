@@ -57,8 +57,8 @@ The modularity that comes with Java 9, means that the attach API will be availab
 [![Build Status](https://travis-ci.org/earcam/com.sun.tools.attach.svg?branch=master)](https://travis-ci.org/earcam/com.sun.tools.attach)
 [![Open Issues](https://img.shields.io/bitbucket/issues/earcam/com.sun.tools.attach.svg)](https://bitbucket.org/earcam/com.sun.tools.attach/issues)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.earcam/com.sun.tools.attach/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.earcam/com.sun.tools.attach)
-[![Javadoc](http://www.javadoc.io/badge/io.earcam/com.sun.tools.attach.svg?color=yellowgreen)](http://www.javadoc.io/doc/io.earcam/com.sun.tools.attach)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.earcam.wrapped/com.sun.tools.attach/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.earcam.wrapped/com.sun.tools.attach)
+[![Javadoc](http://www.javadoc.io/badge/io.earcam.wrapped/com.sun.tools.attach.svg?color=yellowgreen)](http://www.javadoc.io/doc/io.earcam.wrapped/com.sun.tools.attach)
 
 
 ## JVMs
