@@ -45,12 +45,13 @@ Since Java 8 (in preparation for modularity in Java 9), there has existed an ann
 
 Interestingly [forbidden-apis](https://github.com/policeman-tools/forbidden-apis) uses `Security.getProperty("package.access")` for it's **jdk-internal** check.
 
+The modularity that comes with Java 9, means that the attach API will be available in **jdk.attach.jmod** - therefore it is unlikely this library will be maintained (at least in current form).  
+
 
 ## Versions
 
 Available versions listed on [Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.earcam.wrapped%22%20AND%20a%3A%22com.sun.tools.attach%22).
 
-The modularity that comes with Java 9, means that the attach API will be available in **jdk.attach.jmod** - therefore it is unlikely this library will be maintained (at least in current form).  
 
 ## Status
 
