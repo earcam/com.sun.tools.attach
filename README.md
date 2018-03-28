@@ -28,7 +28,7 @@ Instead you may replace with:
 		<dependency>
 			<groupId>io.earcam.wrapped</groupId>
 			<artifactId>com.sun.tools.attach</artifactId>
-			<version>1.8.0_jdk8u131-b11</version>
+			<version>1.8.0_jdk8u162-b12<version>
 			<scope>test</scope>
 		</dependency>
 
@@ -47,6 +47,7 @@ Interestingly [forbidden-apis](https://github.com/policeman-tools/forbidden-apis
 
 The modularity that comes with Java 9, means that the attach API will be available in **jdk.attach.jmod** - therefore it is unlikely this library will be maintained (at least in current form).  
 
+Need something else from `tools.jar`? There's another project [jdk.compiler](https://bitbucket.org/earcam/jdk.compiler) with the necessary bits for Javac AST, JavaDoc, etc.
 
 ## Versions
 
