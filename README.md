@@ -28,7 +28,7 @@ Instead you may replace with:
 		<dependency>
 			<groupId>io.earcam.wrapped</groupId>
 			<artifactId>com.sun.tools.attach</artifactId>
-			<version>1.8.0_jdk8u162-b12<version>
+			<version>1.8.0_jdk8u162-b12</version>
 			<scope>test</scope>
 		</dependency>
 
