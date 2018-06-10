@@ -42,9 +42,9 @@ import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.spi.AttachProvider;
 
+@SuppressWarnings("restriction")
 @NotThreadSafe
 public class ProviderTest {
-
 
 	@Test
 	public void listVMs()
@@ -57,7 +57,7 @@ public class ProviderTest {
 	public void attachToCurrentVm() throws AttachNotSupportedException, IOException
 	{
 		Assume.assumeThat(System.getProperty("jdk.attach.allowAttachSelf"), is(equalTo("true")));
-		
+
 		String key = ProviderTest.class.getCanonicalName() + UUID.randomUUID();
 		String value = UUID.randomUUID().toString();
 		System.setProperty(key, value);
