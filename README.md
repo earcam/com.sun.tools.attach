@@ -28,12 +28,19 @@ Instead you may replace with:
 		<dependency>
 			<groupId>io.earcam.wrapped</groupId>
 			<artifactId>com.sun.tools.attach</artifactId>
-			<version>1.8.0_jdk8u162-b12</version>
+			<version>1.8.0_jdk8u172-b11</version>
 			<scope>test</scope>
 		</dependency>
 
 
 If you need to depend on the API itself then use `<scope>provided</scope>` and `<optional>true</optional>`, it will still run happily in surefire tests but shouldn't be pulled to any distribution assembly.
+
+
+### Java 9 and above
+
+Though built against Java 8, the library (latest version) works on 9 and 10.
+
+Note:  For Java 9 and above, you will need to use the JVM argument `-Djdk.attach.allowAttachSelf=true` in order to dynamically attach to the current VM (see [JDK-8180425](https://bugs.openjdk.java.net/browse/JDK-8180425)).
 
 
 

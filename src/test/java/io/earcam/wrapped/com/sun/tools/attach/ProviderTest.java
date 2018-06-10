@@ -27,25 +27,24 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.lang.management.ManagementFactory;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.concurrent.NotThreadSafe;
 
+import org.junit.Assume;
 import org.junit.Test;
 
 import com.sun.tools.attach.AttachNotSupportedException;
-import com.sun.tools.attach.AttachOperationFailedException;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.spi.AttachProvider;
 
 @NotThreadSafe
 public class ProviderTest {
+
 
 	@Test
 	public void listVMs()
@@ -57,6 +56,8 @@ public class ProviderTest {
 	@Test
 	public void attachToCurrentVm() throws AttachNotSupportedException, IOException
 	{
+		Assume.assumeThat(System.getProperty("jdk.attach.allowAttachSelf"), is(equalTo("true")));
+		
 		String key = ProviderTest.class.getCanonicalName() + UUID.randomUUID();
 		String value = UUID.randomUUID().toString();
 		System.setProperty(key, value);
@@ -100,23 +101,6 @@ public class ProviderTest {
 		Provider provider = new Provider();
 
 		assertThat(provider.type(), is(not(emptyString())));
-	}
-
-
-	@Test
-	public void providerNotFound()
-	{
-		String os = System.getProperty("os.name");
-		try {
-			System.setProperty("os.name", "chicken");
-			Provider provider = new Provider();
-			System.out.println(provider.type());
-			fail();
-		} catch(UncheckedIOException e) {
-			assertThat(e.getCause(), is(instanceOf(AttachOperationFailedException.class)));
-		} finally {
-			System.setProperty("os.name", os);
-		}
 	}
 
 

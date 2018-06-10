@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import com.sun.tools.attach.AttachNotSupportedException;       //NOSONAR false positive - @jdk.Exported
 import com.sun.tools.attach.AttachOperationFailedException;    //NOSONAR false positive - @jdk.Exported
@@ -32,32 +31,47 @@ import com.sun.tools.attach.VirtualMachine;                    //NOSONAR false p
 import com.sun.tools.attach.VirtualMachineDescriptor;          //NOSONAR false positive - @jdk.Exported
 import com.sun.tools.attach.spi.AttachProvider;                //NOSONAR false positive - @jdk.Exported
 
-import sun.tools.attach.BsdAttachProvider;
-import sun.tools.attach.LinuxAttachProvider;
-import sun.tools.attach.SolarisAttachProvider;
-import sun.tools.attach.WindowsAttachProvider;
-
 public class Provider extends AttachProvider {
 
 	private static final String SYSTEM_PROPERTY_OS_NAME = "os.name";
-	private Optional<Supplier<AttachProvider>> PROVIDER_BY_OS = findProvider();
 
 	private volatile AttachProvider provider;
 
 
-	private static Optional<Supplier<AttachProvider>> findProvider()
+	private static Optional<AttachProvider> findProvider()
 	{
-		Map<String, Supplier<AttachProvider>> map = new HashMap<>();
-		map.put("windows", WindowsAttachProvider::new);
-		map.put("mac os x", BsdAttachProvider::new);
-		map.put("bsd", BsdAttachProvider::new);
-		map.put("sunos", SolarisAttachProvider::new);
-		map.put("solaris", SolarisAttachProvider::new);
-		map.put("linux", LinuxAttachProvider::new);
+		Map<String, AttachProvider> map = new HashMap<>();
+		put(map, "windows", "sun.tools.attach.WindowsAttachProvider");
+		put(map, "mac os x", "sun.tools.attach.BsdAttachProvider");
+		put(map, "bsd", "sun.tools.attach.BsdAttachProvider");
+		put(map, "sunos", "sun.tools.attach.SolarisAttachProvider");
+		put(map, "solaris", "sun.tools.attach.SolarisAttachProvider");
+		put(map, "linux", "sun.tools.attach.LinuxAttachProvider");
+
+		if(map.isEmpty()) {
+			put(map, os(), "sun.tools.attach.AttachProviderImpl");
+		}
 		return map.entrySet().stream()
 				.filter(e -> os().startsWith(e.getKey()))
 				.map(Map.Entry::getValue)
 				.findFirst();
+	}
+
+
+	private static void put(Map<String, AttachProvider> map, String os, String attachProviderClass)
+	{
+		try {
+			Class<?> type = Provider.class.getClassLoader().loadClass(attachProviderClass);
+			map.put(os, (AttachProvider) type.newInstance());
+		} catch(ReflectiveOperationException | RuntimeException e) {
+			swallow(e);
+		}
+	}
+
+
+	private static void swallow(Exception gulp)
+	{
+
 	}
 
 
@@ -72,7 +86,7 @@ public class Provider extends AttachProvider {
 		if(provider == null) {
 			synchronized(Provider.class) {
 				if(provider == null) {
-					provider = PROVIDER_BY_OS.orElseThrow(Provider::providerNotFound).get();
+					provider = findProvider().orElseThrow(Provider::providerNotFound);
 				}
 			}
 		}

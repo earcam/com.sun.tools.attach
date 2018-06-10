@@ -10,7 +10,7 @@
 
 	<groupId>io.earcam.wrapped</groupId>
 	<artifactId>com.sun.tools.attach</artifactId>
-	<version>1.8.0_jdk8u162-b12</version>
+	<version>1.8.0_jdk8u172-b11</version>
 	<packaging>jar</packaging>
 
 	<description>Maven repackaging of OpenJDK's com.sun.tools.attach and com.sun.tools.attach.spi packages</description>
@@ -47,7 +47,7 @@
 	</distributionManagement>
 
 	<properties>
-		<openjdk.scm.tag>jdk8u162-b12</openjdk.scm.tag>
+		<openjdk.scm.tag>jdk8u172-b11</openjdk.scm.tag>
 
 		<version.java.platform>8</version.java.platform>
 		<version.java>1.${version.java.platform}</version.java>
@@ -281,6 +281,7 @@
 					<includes>
 						<include>**/*Test.java</include>
 					</includes>
+					<argLine>-Djdk.attach.allowAttachSelf=true</argLine>
 				</configuration>
 				<executions>
 					<execution>
